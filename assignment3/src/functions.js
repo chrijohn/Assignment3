@@ -13,7 +13,10 @@
 */
 
 //your code here
-
+function uselessFunction()
+{
+	return null;
+}
 //end your code
 
 var bar = 'not a function';
@@ -30,7 +33,19 @@ var barType = typeof bar;
 */
 
 //your code here
-
+var bar = function(doubleArray)
+{
+	for (var i=0; i <doubleArray.length;i++)
+	{
+		doubleArray[i]= (doubleArray[i] * 2);
+		if (isNaN(doubleArray[i]))
+		{
+			return false;
+		}
+	}
+	
+	return true;
+}
 //end your code
 
 /**
