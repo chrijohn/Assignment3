@@ -10,7 +10,7 @@
 
 function returnObjectLiteral() {
   //your code here
-  return undefined; //Modify ONLY this line
+  return ObjectLiteral = {type: "Goldfish", brand: "Pepperidge Farm", flavor: "Cheddar", count: 2000}; //Modify ONLY this line
   //end your code
 }
 
@@ -38,6 +38,60 @@ function returnObjectLiteral() {
 */
 
 //your code here
+function MessageLog (user)
+{
+	this.user = user;
+	this.logMessage = logMessage;
+	this.getSentMessage = getSentMessage;
+	this.totalSent = totalSent;
+	this.totalReceived = totalReceived;
+	this.lastReceivedMessage = lastReceivedMessage; 
+	this.sentMessages = [];
+	this.recMessage = " ";
+	this.receivedCount = 0;
+	this.sentMessagesCount = 0;
+	this.messageText = " ";
+	this.direction = 2;
+}
+
+function logMessage(messageText, direction)
+{
+	this.messageText = messageText;
+	this.direction = direction;
+	
+	if (direction == 0)
+	{
+		this.sentMessagesCount++;
+		this.sentMessages.unshift(messageText);
+		this.sentMessages.splice (5,5);
+	}
+	if (direction == 1)
+	{
+		this.receivedCount++;
+		this.recMessage = messageText;
+	}
+}
+
+function getSentMessage (n)
+{
+	if (n > 4)
+	{
+		return "That is not a valid number";
+	}
+	else
+	{
+		return this.sentMessages[n];
+	}
+}
+function totalSent()
+{
+	return this.sentMessagesCount;
+}
+
+function totalReceived()
+{
+	return this.receivedCount;
+}
 
 //end your code
 
@@ -48,6 +102,10 @@ function returnObjectLiteral() {
 */
 //your code here
 
+function lastReceivedMessage()
+{
+	return this.recMessage;
+}
 //end your code
 
 /**
@@ -57,5 +115,10 @@ function returnObjectLiteral() {
 */
 
 //your code here
+var myLog = new MessageLog("BlackHatGuy");
+myLog.logMessage("foo", 1);
+myLog.logMessage("bar", 1);
+myLog.logMessage("baz", 1);
+
 
 //end your code
