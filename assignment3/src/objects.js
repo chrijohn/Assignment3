@@ -41,11 +41,43 @@ function returnObjectLiteral() {
 function MessageLog (user)
 {
 	this.user = user;
-	this.logMessage = logMessage;
-	this.getSentMessage = getSentMessage;
-	this.totalSent = totalSent;
-	this.totalReceived = totalReceived;
-	this.lastReceivedMessage = lastReceivedMessage; 
+	this.logMessage = function (messageText, direction)
+		{
+			this.messageText = messageText;
+			this.direction = direction;
+	
+			if (direction == 0)
+		{
+			this.sentMessagesCount++;
+			this.sentMessages.unshift(messageText);
+			this.sentMessages.splice (5,5);
+		}
+			if (direction == 1)
+		{
+			this.receivedCount++;
+			this.recMessage = messageText;
+		}
+		}
+	this.getSentMessage = function getSentMessage (n)
+		{
+			if (n > 4)
+			{
+				return "That is not a valid number";
+			}
+			else
+			{
+			return this.sentMessages[n];
+			}
+		}
+	this.totalSent = function()
+		{
+			return this.sentMessagesCount;
+		}
+	this.totalReceived = function()
+		{
+			return this.receivedCount;
+		} 
+//	this.lastReceivedMessage = lastReceivedMessage
 	this.sentMessages = [];
 	this.recMessage = " ";
 	this.receivedCount = 0;
@@ -53,46 +85,6 @@ function MessageLog (user)
 	this.messageText = " ";
 	this.direction = 2;
 }
-
-function logMessage(messageText, direction)
-{
-	this.messageText = messageText;
-	this.direction = direction;
-	
-	if (direction == 0)
-	{
-		this.sentMessagesCount++;
-		this.sentMessages.unshift(messageText);
-		this.sentMessages.splice (5,5);
-	}
-	if (direction == 1)
-	{
-		this.receivedCount++;
-		this.recMessage = messageText;
-	}
-}
-
-function getSentMessage (n)
-{
-	if (n > 4)
-	{
-		return "That is not a valid number";
-	}
-	else
-	{
-		return this.sentMessages[n];
-	}
-}
-function totalSent()
-{
-	return this.sentMessagesCount;
-}
-
-function totalReceived()
-{
-	return this.receivedCount;
-}
-
 //end your code
 
 /**
@@ -101,11 +93,10 @@ function totalReceived()
 * received.
 */
 //your code here
-
-function lastReceivedMessage()
+MessageLog.prototype.lastReceivedMessage = function()
 {
 	return this.recMessage;
-}
+};
 //end your code
 
 /**
